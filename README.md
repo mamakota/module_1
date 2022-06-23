@@ -7,7 +7,7 @@ git config --global init.defaultBranch main
 
 git init
 git add . 
-git comming -m 'comment'
+git commit -m 'comment'
 git status
 git diff
 git diff --color-words
