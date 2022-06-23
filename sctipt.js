@@ -12,10 +12,10 @@
 }
 
 {
-  const productName = 'Киви';
+  const productName = 'Батат';
   let productQuantity = 25;
-  const productCategory = 'Фрукт';
-  let productCost = 200;
+  const productCategory = 'Овощ';
+  let productCost = 300;
 
   console.log('Название товара', productName);
 
