@@ -22,7 +22,7 @@ if ((maths + rus + inform) >= 265) {
 
 const requestedСash = prompt('Введите сумму', '');
 
-if (requestedСash % 100) {
+if (requestedСash % 100 && requestedСash != 0) {
   console.log('введите сумму кратную 100');
 } else {
   console.log('удачно');
