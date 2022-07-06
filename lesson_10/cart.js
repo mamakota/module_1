@@ -1,16 +1,16 @@
-'use strict'
+'use strict';
 
 const cart = {
   items: [],
   get totalPrice() {
-    return this.calculateItemPrice(this.items)
+    return this.calculateItemPrice(this.items);
   },
   count: 0,
   add(name, cost, quan = 1) {
     this.items.push({
       name,
       cost,
-      quan
+      quan,
     });
     this.increaseCount(quan);
     // this.calculateItemPrice(this.items);
@@ -22,7 +22,7 @@ const cart = {
     let price = 0;
     let quan = 0;
 
-    for (let item of items) {
+    for (const item of items) {
       price += item.cost * item.quan;
       quan += item.quan;
     }
@@ -37,7 +37,7 @@ const cart = {
   print() {
     console.log(`${JSON.stringify(this.items)} \n${this.totalPrice}`);
   },
-}
+};
 
 cart.add('name', 2, 5);
 cart.add('name2', 20, 1);
