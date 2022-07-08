@@ -1,7 +1,13 @@
 'use strict';
+
 (() => {
-  const FIGURES_ENG = ['rock', 'scissors', 'paper'];
-  const FIGURES_RUS = ['камень', 'ножницы', 'бумага'];
+  const FIGURES_ENG = ['rock', 'scissors', 'paper', 'Draw', 'You', 'Computer',
+    'You won', 'You lost', 'Are you sure you want to quit?', 'Final score',
+  ];
+  const FIGURES_RUS = ['камень', 'ножницы', 'бумага', 'Ничья', 'Вы',
+    'Компьютер', 'Вы выиграли', 'Вы проиграли', 'Уверены что хотите выйти?',
+    'Результат',
+  ];
 
   const getRandomIntInclusive = (min, max) => {
     min = Math.ceil(min);
@@ -15,61 +21,61 @@
       computer: 0,
     };
 
-    // const lang = language === 'EN' || language === 'ENG' ? FIGURES_ENG : FIGURES_RUS;
+    const lang = language === 'EN' || language === 'ENG' ? FIGURES_ENG :
+      FIGURES_RUS;
 
     return function start() {
-      let randomNumber = getRandomIntInclusive(0, 2);
-      let promptPlayer = prompt('камень,ножницы,бумага?', '');
+      const randomNumber = getRandomIntInclusive(0, 2);
+      const promptPlayer = prompt(`${lang[0]}, ${lang[1]}, ${lang[2]}?`, '');
 
-      if (!(promptPlayer === null)) {
-        let computerChoice = FIGURES_RUS[randomNumber][0].toLocaleUpperCase();
-        let playerChoice = promptPlayer[0].toLocaleUpperCase();
+      if (!(promptPlayer === null) && !(promptPlayer === '')) {
+        const computerChoice = lang[randomNumber][0].toLowerCase();
+        const playerChoice = promptPlayer[0].toLowerCase();
 
         if (playerChoice === computerChoice) {
-          alert('Ничья');
-          console.log(`ничья`);
+          alert(`${lang[3]}`);
         } else {
           switch (true) {
-            case playerChoice === 'К':
-              if (computerChoice === 'Н') {
-                console.log('камень бьет ножницы');
-                alert('Вы: камень\nКомпьютер: ножницы\nВы выиграли');
-                result.player++
+            case playerChoice === lang[0][0]: // камень
+              if (computerChoice === lang[1][0]) {
+                alert(`${lang[4]}: ${lang[0]}\n${lang[5]}: ${lang[1]}
+                \n${lang[6]}`);
+                result.player++;
               } else {
-                console.log('бумага бьет камень');
-                alert('Вы: камень\nКомпьютер: бумага\nВы проиграли');
-                result.computer++
+                alert(`${lang[4]}: ${lang[0]}\n${lang[5]}: ${lang[2]}
+                \n${lang[7]}`);
+                result.computer++;
               }
               break;
-            case playerChoice === 'Н':
-              if (computerChoice === "Б") {
-                console.log('ножницы бьют бумагу');
-                alert('Вы: ножницы\nКомпьютер: бумага\nВы выиграли');
-                result.player++
+            case playerChoice === lang[1][0]: // ножницы
+              if (computerChoice === lang[2][0]) {
+                alert(`${lang[4]}: ${lang[1]}\n${lang[5]}: ${lang[2]}
+                \n${lang[6]}`);
+                result.player++;
               } else {
-                console.log('камень бьет ножницы');
-                alert('Вы: ножницы\nКомпьютер: камень\nВы проиграли');
-                result.computer++
+                alert(`${lang[4]}: ${lang[1]}\n${lang[5]}: ${lang[0]}
+                \n${lang[7]}`);
+                result.computer++;
               }
               break;
-            case playerChoice === 'Б':
-              if (computerChoice === 'К') {
-                console.log('бумага бьет камень');
-                alert('Вы: бумага\nКомпьютер: камень\nВы выиграли');
-                result.player++
+            case playerChoice === lang[2][0]: // бумага
+              if (computerChoice === lang[0][0]) {
+                alert(`${lang[4]}: ${lang[2]}\n${lang[5]}: ${lang[0]}
+                \n${lang[6]}`);
+                result.player++;
               } else {
-                console.log('ножницы бьют бумагу');
-                alert('Вы: бумага\nКомпьютер: ножницы\nВы проиграли');
-                result.computer++
+                alert(`${lang[4]}: ${lang[2]}\n${lang[5]}: ${lang[1]}
+                \n${lang[7]}`);
+                result.computer++;
               }
           }
         }
       }
 
       if (promptPlayer === null) {
-        if (confirm('Уверены что хотите выйти?')) {
-          alert(`Результат:\nКомпьютер: ${result.computer}\nВы: ${result.player}`);
-          console.log(result);
+        if (confirm(`${lang[8]}`)) {
+          alert(`${lang[9]}:\n${lang[5]}: ${result.computer}\n${lang[4]}: 
+          ${result.player}`);
         } else {
           return start();
         }
@@ -77,7 +83,6 @@
         return start();
       }
     };
-
   };
 
   window.RPS = game;
